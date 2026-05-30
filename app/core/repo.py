@@ -5,7 +5,7 @@ from typing import Iterable
 
 from pathspec import GitIgnoreSpec
 
-from app.config import MAX_FILE_BYTES, MAX_FILES, PRIORITY_FILES, SKIP_DIRS, TEXT_EXTENSIONS
+from app.config import PRIORITY_FILES, SKIP_DIRS, TEXT_EXTENSIONS
 
 
 class RepoContext(dict):
@@ -21,7 +21,7 @@ def _safe_read(path: Path) -> str:
         data = path.read_text(encoding="utf-8", errors="ignore")
     except Exception:
         return ""
-    return data[:MAX_FILE_BYTES]
+    return data
 
 
 def _load_gitignore_spec(repo_path: Path) -> GitIgnoreSpec | None:
@@ -79,7 +79,7 @@ def scan_repository(repo_path: Path) -> RepoContext:
             prioritized.append(candidate)
 
     remaining = [p for p in files if p not in prioritized]
-    selected = (prioritized + remaining)[:MAX_FILES]
+    selected = (prioritized + remaining)
 
     entries = []
     for file_path in selected:

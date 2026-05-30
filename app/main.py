@@ -14,7 +14,7 @@ def main() -> None:
     repo_path = resolve_repo_path(args.repo_path)
     output_path = repo_path / DEFAULT_OUTPUT
     generate_readme(repo_path=repo_path, model=args.model, output_path=output_path)
-    print(f"README written to {output_path}")
+    print(f"README written to {DEFAULT_OUTPUT}")
 
 if __name__ == "__main__":
     main()
