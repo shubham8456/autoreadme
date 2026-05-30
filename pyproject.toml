@@ -12,7 +12,8 @@ authors = [
   { name = "Shubham Rawat" }
 ]
 dependencies = [
-  "requests>=2.32.0"
+  "requests>=2.32.0",
+  "pathspec>=0.12.1"
 ]
 
 [tool.setuptools]
