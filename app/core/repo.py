@@ -50,6 +50,9 @@ def _is_ignored_by_gitignore(path: Path, repo_path: Path, spec: GitIgnoreSpec | 
 def _iter_files(repo_path: Path) -> Iterable[Path]:
     gitignore_spec = _load_gitignore_spec(repo_path)
 
+    print("[autoreadme] Ignoring tests, logs, builds, caches and other unnecessary files", flush=True)
+    print("[autoreadme] Ignoring items from .gitignore", flush=True)
+    print("[autoreadme] Ignoring non-text files", flush=True)
     for path in repo_path.rglob("*"):
         if any(part in SKIP_DIRS for part in path.parts):
             continue
@@ -65,29 +68,19 @@ def _iter_files(repo_path: Path) -> Iterable[Path]:
 
 
 def scan_repository(repo_path: Path) -> RepoContext:
+    print("[autoreadme] Loading ignore rules...", flush=True)
     files = list(_iter_files(repo_path))
+    print(f"[autoreadme] Found {len(files)} candidate files after filtering", flush=True)
 
-    prioritized = []
-    for name in PRIORITY_FILES:
-        candidate = repo_path / name
-        if (
-            candidate.exists()
-            and candidate.is_file()
-            and candidate not in prioritized
-            and candidate in files
-        ):
-            prioritized.append(candidate)
-
-    remaining = [p for p in files if p not in prioritized]
-    selected = (prioritized + remaining)
-
+    print(f"[autoreadme] Started reading final {len(files)} files", flush=True)
     entries = []
-    for file_path in selected:
+    for file_path in files:
         rel_path = file_path.relative_to(repo_path)
         content = _safe_read(file_path)
         if not content.strip():
             continue
         entries.append({"path": str(rel_path), "content": content})
+    print("[autoreadme] Finished reading files.\n", flush=True)
 
     return RepoContext(
         repo_name=repo_path.name,

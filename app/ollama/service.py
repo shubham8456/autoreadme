@@ -15,8 +15,10 @@ def list_models() -> list[str]:
 
 def ensure_model(model: str) -> None:
     if model in list_models():
+        print(f"[autoreadme] Found existing model: {model}")
         return
 
+    print(f"[autoreadme] Model: {model} not found. Downloading from Ollama. Please wait a while...")
     response = requests.post(
         f"{OLLAMA_URL}/api/pull",
         json={"name": model, "stream": False},
@@ -25,7 +27,7 @@ def ensure_model(model: str) -> None:
     response.raise_for_status()
 
 def generate_markdown(model: str, system_prompt: str, user_prompt: str) -> str:
-    ensure_model(model)
+    print("[autoreadme] Sending request to Ollama...", flush=True)
     response = requests.post(
         f"{OLLAMA_URL}/api/chat",
         json={
@@ -46,4 +48,5 @@ def generate_markdown(model: str, system_prompt: str, user_prompt: str) -> str:
     content = payload.get("message", {}).get("content", "").strip()
     if not content:
         raise OllamaError("Ollama returned an empty response")
+    print("[autoreadme] Received response from Ollama.", flush=True)
     return content
