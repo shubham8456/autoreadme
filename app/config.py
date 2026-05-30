@@ -1,38 +1,19 @@
 from pathlib import Path
 import os
 
-DEFAULT_MODEL = os.getenv("AUTOREADME_MODEL", "qwen2.5-coder:3b")
-DEFAULT_OUTPUT = "README.generated.md"
-OLLAMA_URL = os.getenv("AUTOREADME_OLLAMA_URL", "http://127.0.0.1:11434")
+OLLAMA_MODEL = os.getenv("AUTOREADME_MODEL", "qwen2.5-coder:3b")
+OLLAMA_URL   = os.getenv("AUTOREADME_OLLAMA_URL", "http://127.0.0.1:11434")
+OUTPUT_FILENAME = "README.generated.md"
 
 SKIP_DIRS = {
-    ".git",
-    ".next",
-    ".turbo",
-    ".venv",
-    "venv",
-    "node_modules",
-    "dist",
-    "build",
-    "coverage",
-    ".pytest_cache",
-    ".mypy_cache",
-    ".idea",
-    ".vscode",
+    ".git", ".next", ".turbo", ".venv", "venv", "node_modules", "dist",
+    "build", "coverage", ".pytest_cache", ".mypy_cache", ".idea", ".vscode",
 }
 
-PRIORITY_FILES = [
-    "README.md",
-    "package.json",
-    "pyproject.toml",
-    "requirements.txt",
-    "Cargo.toml",
-    "go.mod",
-    "Dockerfile",
-    "docker-compose.yml",
-    "docker-compose.yaml",
-    ".env.example",
-]
+# PRIORITY_FILES = [
+#     "README.md", "package.json", "pyproject.toml", "requirements.txt", "Cargo.toml",
+#     "go.mod", "Dockerfile", "docker-compose.yml", "docker-compose.yaml", ".env.example",
+# ]
 
 TEXT_EXTENSIONS = {
     ".py", ".js", ".ts", ".tsx", ".jsx", ".rb", ".go", ".rs", ".java", ".kt", ".sh", ".md",
