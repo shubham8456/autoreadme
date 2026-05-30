@@ -5,7 +5,7 @@ from typing import Iterable
 
 from pathspec import GitIgnoreSpec
 
-from app.config import PRIORITY_FILES, SKIP_DIRS, TEXT_EXTENSIONS
+from app.config import SKIP_DIRS, TEXT_EXTENSIONS
 
 
 class RepoContext(dict):
@@ -13,7 +13,7 @@ class RepoContext(dict):
 
 
 def _is_text_file(path: Path) -> bool:
-    return path.suffix.lower() in TEXT_EXTENSIONS or path.name in PRIORITY_FILES
+    return path.suffix.lower() in TEXT_EXTENSIONS
 
 
 def _safe_read(path: Path) -> str:
