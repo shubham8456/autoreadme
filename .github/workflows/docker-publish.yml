@@ -20,7 +20,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: your-dockerhub-username/autoreadme
+          images: shubham8456/autoreadme
           tags: |
             type=raw,value=latest
             type=sha
