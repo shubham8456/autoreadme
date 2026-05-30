@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# TEST_REPO_PATH="/Users/rawat/dev/latex-resume"
-TEST_REPO_PATH="/Users/rawat/dev/playground/app_development/photo-studio"
+# TEST_REPO_PATH="/Users/user_1/dev/path/to/repo/root"
 
 # Step 1: `docker build -t autoreadme-alpine-dev`
 # Step 2:
