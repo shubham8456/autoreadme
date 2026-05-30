@@ -13,6 +13,7 @@ def main() -> None:
     args = build_parser().parse_args()
     repo_path = resolve_repo_path(args.repo_path)
     output_path = repo_path / OUTPUT_FILENAME
+    print("\n[autoreadme] Starting AutoReadme\n", flush=True)
     generate_readme(repo_path=repo_path, model=args.model, output_path=output_path)
 
 if __name__ == "__main__":

@@ -6,8 +6,6 @@ from app.core.repo import scan_repository
 from app.ollama.service import ensure_model, generate_markdown
 
 def generate_readme(repo_path: Path, model: str, output_path: Path) -> None:
-    print("[autoreadme] Starting AutoReadme\n", flush=True)
-
     ensure_model(OLLAMA_MODEL)
     print("[autoreadme] Ollama is ready", flush=True)
     print(f"[autoreadme] Using model: {OLLAMA_MODEL}\n", flush=True)
@@ -16,7 +14,7 @@ def generate_readme(repo_path: Path, model: str, output_path: Path) -> None:
     system_prompt = load_system_prompt()
     user_prompt = build_user_prompt(context)
 
-    print("\n[autoreadme] Generating README with Ollama...", flush=True)
+    print("[autoreadme] Generating README with Ollama...", flush=True)
     markdown = generate_markdown(model=model, system_prompt=system_prompt, user_prompt=user_prompt)
     print("[autoreadme] README generation complete", flush=True)
 

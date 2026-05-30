@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-echo "[entrypoint] Starting container"
+echo "\n[entrypoint] Starting container"
 echo "[entrypoint] Selected model: ${AUTOREADME_MODEL}"
 
 echo "[entrypoint] Starting Ollama server..."
@@ -38,6 +38,6 @@ if ! ollama list | awk '{print $1}' | grep -qx "$AUTOREADME_MODEL"; then
 fi
 
 echo "[entrypoint] Model is ready"
-echo "[entrypoint] Running AutoReadme for path: $@"
+echo "[entrypoint] Running \"AutoReadme\" for path: $@"
 
 python3 -m app.main "$@"

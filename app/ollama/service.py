@@ -48,5 +48,5 @@ def generate_markdown(model: str, system_prompt: str, user_prompt: str) -> str:
     content = payload.get("message", {}).get("content", "").strip()
     if not content:
         raise OllamaError("Ollama returned an empty response")
-    print("[autoreadme] Received response from Ollama.", flush=True)
+    print("[autoreadme] Received response from Ollama", flush=True)
     return content
