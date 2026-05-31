@@ -43,3 +43,7 @@ docker run --rm \
   autoreadme /workspace
 ```
 This downloads the model from [ollama](https://ollama.com/search) if not present in your machine already.
+
+----
+
+The "AutoReadme" official docker image can be found at: [Docker Hub](https://hub.docker.com/r/shubham8456/autoreadme/tags)
