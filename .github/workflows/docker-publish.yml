@@ -9,6 +9,7 @@ on:
       - 'app/**'
       - 'docker/**'
       - 'pyproject.toml'
+      - '.github/workflows/docker-publish.yml'
 
 jobs:
   docker:
